@@ -65,11 +65,9 @@ func (ht *HashTable[K, V]) Get(key K) (V, bool) {
 	for i := range int(ht.capacity) {
 		hash := ht.hashIndex(key, i)
 
-		if ht.states[hash] == SLOT_FILLED && ht.keys[hash] != key || ht.states[hash] == SLOT_DELETED {
-			continue
+		if ht.states[hash] == SLOT_FILLED && ht.keys[hash] == key {
+			return ht.values[hash], true
 		}
-
-		return ht.values[hash], true
 	}
 
 	return emptyValue, false
@@ -103,8 +101,12 @@ func (ht *HashTable[K, V]) Print() {
 	}
 }
 
-func (ht *HashTable[K, V]) Len() int {
+func (ht *HashTable[K, V]) Size() int {
 	return int(ht.size)
+}
+
+func (ht *HashTable[K, V]) Cap() int {
+	return int(ht.capacity)
 }
 
 func (ht *HashTable[K, V]) rehash() {
