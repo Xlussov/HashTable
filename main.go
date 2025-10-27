@@ -7,29 +7,29 @@ import (
 )
 
 func main() {
-	ht := hashtable.New[string, int](8)
+	ht := hashtable.New[int, string](8)
 
-	ht.Put("value1", 1)
-	ht.Put("value2", 2)
-	ht.Put("value3", 3)
-	ht.Put("value4", 4)
-	ht.Put("value5", 5)
-	ht.Put("value6", 6)
-	ht.Put("value7", 7)
+	ht.Put(1, "key1")
+	ht.Put(2, "value2")
+	ht.Put(3, "value3")
+	ht.Put(4, "value4")
+	ht.Put(5, "value5")
+	ht.Put(6, "value6")
+	ht.Put(7, "value7")
 	ht.Print()
 	fmt.Println("==============================")
 
-	ht.Put("value8", 8)
+	ht.Put(8, "value8")
 
-	if v, ok := ht.Get("value1"); ok {
+	if v, ok := ht.Get(1); ok {
 		fmt.Println(v)
 	}
 
-	if v, ok := ht.Remove("value1"); ok {
+	if v, ok := ht.Remove(1); ok {
 		fmt.Println(v)
 	}
 
-	if v, ok := ht.Get("value1"); ok {
+	if v, ok := ht.Get(1); ok {
 		fmt.Println(v)
 	}
 
